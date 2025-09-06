@@ -2,23 +2,23 @@ import { GenreRepository } from './genre.repository';
 import { CreateGenreInput } from './input';
 
 export class GenreService {
-  private repository: GenreRepository;
+  private genreRepository: GenreRepository;
 
   constructor(repository: GenreRepository) {
-    this.repository = repository;
+    this.genreRepository = repository;
   }
 
   async getAllGenres() {
-    return await this.repository.findAll();
+    return await this.genreRepository.findAll();
   }
 
   async getGenreById(id: number) {
-    const genre = await this.repository.findById(id);
+    const genre = await this.genreRepository.findById(id);
     if (!genre) throw new Error('Genre not found');
     return genre;
   }
 
   async createGenre(input: CreateGenreInput) {
-    return await this.repository.create(input);
+    return await this.genreRepository.create(input);
   }
 }
