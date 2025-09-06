@@ -6,6 +6,7 @@ import path from 'path';
 import { createContext } from './context';
 import { genreResolver } from './genre/genre.resolver';
 import { actorResolver } from './actor/actor.resolver';
+import { movieResolver } from './movie/movie.resolver';
 
 const typeDefs = fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf-8');
 
@@ -15,10 +16,12 @@ const schema = makeExecutableSchema({
     Query: {
       ...genreResolver.Query,
       ...actorResolver.Query,
+      ...movieResolver.Query
     },
     Mutation: {
       ...genreResolver.Mutation,
       ...actorResolver.Mutation,
+      ...movieResolver.Mutation
     },
   },
 });

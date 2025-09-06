@@ -53,4 +53,5 @@ type Mutation {
   deleteActor(id: Int!): Actor!
   createGenre(input: GenreInput!): Genre!
   addGenresToMovie(movieId: Int!, genreIds: [Int!]!): Movie!
+  removeGenreFromMovie(movieId: Int!, genreId: Int!): Movie!
 }
