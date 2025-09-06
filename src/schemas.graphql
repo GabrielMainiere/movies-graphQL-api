@@ -1,0 +1,56 @@
+type Movie {
+  id: Int!
+  title: String!
+  year: Int!
+  actors: [Actor!]
+  genres: [Genre!]
+}
+
+input MovieInput {
+  title: String!
+  year: Int!
+}
+
+type Actor {
+  id: Int!
+  name: String!
+  birthDate: String
+  movies: [Movie!]
+}
+
+input ActorInput {
+  name: String!
+  birthDate: String
+}
+
+type Genre {
+  id: Int!
+  name: String!
+  movies: [Movie!]
+}
+
+input GenreInput {
+  name: String!
+}
+
+type Query {
+  movies: [Movie!]!
+  movie(id: Int!): Movie
+  actors: [Actor!]!
+  actor(id: Int!): Actor
+  genres: [Genre!]!
+  genre(id: Int!): Genre
+}
+
+type Mutation {
+  createMovie(input: MovieInput!): Movie!
+  updateMovie(id: Int!, input: MovieInput!): Movie!
+  deleteMovie(id: Int!): Movie!
+  addActorsToMovie(movieId: Int!, actorIds: [Int!]!): Movie!
+  removeActorFromMovie(movieId: Int!, actorId: Int!): Movie!
+  createActor(input: ActorInput!): Actor!
+  updateActor(id: Int!, input: ActorInput!): Actor!
+  deleteActor(id: Int!): Actor!
+  createGenre(input: GenreInput!): Genre!
+  addGenresToMovie(movieId: Int!, genreIds: [Int!]!): Movie!
+}
