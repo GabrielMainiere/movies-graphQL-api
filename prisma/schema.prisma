@@ -22,6 +22,7 @@ model Movie {
 model Actor {
   id        Int      @id @default(autoincrement())
   name      String
+  birthDate DateTime
   movies    Movie[]  @relation("MovieActor")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
