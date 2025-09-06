@@ -5,35 +5,32 @@ import fs from 'fs';
 import path from 'path';
 import { createContext } from './context';
 import { genreResolver } from './genre/genre.resolver';
+import { actorResolver } from './actor/actor.resolver';
 
 const typeDefs = fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf-8');
-
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
       ...genreResolver.Query,
+      ...actorResolver.Query,
     },
     Mutation: {
       ...genreResolver.Mutation,
+      ...actorResolver.Mutation,
     },
   },
 });
 
-const server = new ApolloServer({
-  schema,
-});
+const server = new ApolloServer({ schema });
 
 const startServer = async () => {
   const { url } = await startStandaloneServer(server, {
     context: async () => createContext(),
     listen: { port: 4000 },
   });
-
   console.log(`🚀 Server running at ${url}`);
 };
 
-startServer().catch((err) => {
-  console.error('Error starting server:', err);
-});
+startServer();
