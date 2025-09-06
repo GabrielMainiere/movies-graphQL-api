@@ -9,7 +9,7 @@ export class GenreService {
   }
 
   async getAllGenres() {
-    return this.repository.findAll();
+    return await this.repository.findAll();
   }
 
   async getGenreById(id: number) {
@@ -19,6 +19,6 @@ export class GenreService {
   }
 
   async createGenre(input: CreateGenreInput) {
-    return this.repository.create(input);
+    return await this.repository.create(input);
   }
 }
