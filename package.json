@@ -6,7 +6,6 @@
     "start": "node dist/index.js",
     "build": "tsc"
   },
-
   "dependencies": {
     "@apollo/server": "^5.0.0",
     "@graphql-tools/schema": "^10.0.25",
